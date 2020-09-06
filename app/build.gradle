@@ -1,0 +1,92 @@
+apply plugin: 'com.android.application'
+apply plugin: 'realm-android'
+
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        applicationId "com.example.imf_demo"
+        minSdkVersion 27
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        maven { url "https://jitpack.io" }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0'
+    implementation 'androidx.navigation:navigation-fragment:2.3.0'
+    implementation 'androidx.navigation:navigation-ui:2.3.0'
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+
+
+    // IMF dependencies start
+
+    //google and support
+    implementation "com.android.support:appcompat-v7:28.0.0"
+    implementation "com.android.support:design:28.0.0"
+    implementation "com.android.support:support-vector-drawable:28.0.0"
+    implementation "com.android.support:palette-v7:28.0.0"
+    implementation "com.android.support:cardview-v7:28.0.0"
+    implementation "com.android.support:customtabs:28.0.0"
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+
+    implementation project(path: ':app-release')
+    implementation project(path: ':StickyHeaderPagerLibrary-release')
+    implementation project(path: ':scanlibrary-release')
+    implementation project(path: ':photoview-release')
+
+    //metadataextractor
+    implementation 'com.drewnoakes:metadata-extractor:2.9.1'
+    //compressor
+    implementation 'id.zelory:compressor:2.1.0'
+
+    implementation 'com.github.bumptech.glide:glide:3.7.0'
+    implementation 'com.yalantis:ucrop:1.5.0'
+    implementation 'de.psdev.licensesdialog:licensesdialog:1.8.0'
+
+    implementation 'com.koushikdutta.ion:ion:2.1.7'
+    implementation 'org.jetbrains:annotations-java5:15.0'
+    implementation 'com.android.support:multidex:1.0.1'
+    implementation 'com.box:box-android-sdk:4.0.8'
+    //leak canary
+    implementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
+    //icons
+    implementation 'com.mikepenz:iconics-core:2.8.4@aar'
+    implementation 'com.mikepenz:google-material-typeface:2.2.0.3.original@aar'
+    implementation 'com.mikepenz:community-material-typeface:1.5.54.2@aar'
+    implementation 'com.mikepenz:fontawesome-typeface:4.6.0.1@aar'
+    implementation 'com.mikepenz:ionicons-typeface:+@aar'
+
+    //ui
+    implementation 'de.hdodenhof:circleimageview:2.0.0'
+    implementation 'com.turingtechnologies.materialscrollbar:lib:10.0.3'
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.7'
+    implementation 'com.github.shchurov:horizontalwheelview:0.9.5'
+    implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.4'
+
+
+}

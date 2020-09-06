@@ -1,0 +1,6 @@
+include ':photoview-release'
+include ':scanlibrary-release'
+include ':StickyHeaderPagerLibrary-release'
+include ':app-release'
+include ':app'
+rootProject.name = "imf_demo"
