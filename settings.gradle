@@ -1,6 +1,9 @@
-include ':photoview-release'
-include ':scanlibrary-release'
-include ':StickyHeaderPagerLibrary-release'
 include ':app-release'
+include ':scanlibrary-release'
+include ':opencv401-release'
+include ':colorpicker-release'
+include ':circular_floating_action_menu_library-release'
+include ':photoview-release'
+include ':StickyHeaderPagerLibrary-release'
 include ':app'
 rootProject.name = "imf_demo"
