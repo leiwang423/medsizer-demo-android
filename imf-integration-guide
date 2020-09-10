@@ -1,24 +1,31 @@
 1. Download image measure aar files and load to your project, add to dependencies of your app.
 
 [image-measure-app-release]
-https://bitbucket.org/wanglei423/imf-demo-android/raw/69bcafd3ce03351a9adb1382deefa8baa1202259/app-release/app-release.aar
+
+https://bitbucket.org/wanglei423/imf-demo-android/raw/4fbc8110d9d46ae73a402311bd05ef59be65d0e6/image-measure-app-release/image-measure-app-release.aar
 
 [circular_floating_action_menu_library-release]
+
 https://bitbucket.org/wanglei423/imf-demo-android/raw/69bcafd3ce03351a9adb1382deefa8baa1202259/circular_floating_action_menu_library-release/circular_floating_action_menu_library-release.aar
 
 [opencv401-release]
+
 https://bitbucket.org/wanglei423/imf-demo-android/raw/69bcafd3ce03351a9adb1382deefa8baa1202259/opencv401-release/opencv401-release.aar
 
 [photoview-release]
+
 https://bitbucket.org/wanglei423/imf-demo-android/raw/69bcafd3ce03351a9adb1382deefa8baa1202259/photoview-release/photoview-release.aar
 
 [scanlibrary-release]
+
 https://bitbucket.org/wanglei423/imf-demo-android/raw/69bcafd3ce03351a9adb1382deefa8baa1202259/scanlibrary-release/scanlibrary-release.aar
 
 [colorpicker-release]
+
 https://bitbucket.org/wanglei423/imf-demo-android/raw/69bcafd3ce03351a9adb1382deefa8baa1202259/colorpicker-release/colorpicker-release.aar
 
 [StickyHeaderPagerLibrary-release]
+
 https://bitbucket.org/wanglei423/imf-demo-android/raw/69bcafd3ce03351a9adb1382deefa8baa1202259/StickyHeaderPagerLibrary-release/StickyHeaderPagerLibrary-release.aar
 
 2. Add settings to your AndroidManifest.xml
@@ -35,7 +42,9 @@ https://bitbucket.org/wanglei423/imf-demo-android/raw/69bcafd3ce03351a9adb1382de
     <uses-feature android:name="android.hardware.microphone" />
 
     <application ...>
+       
        <activity android:name="org.image.measure.gallery.activities.LFMainActivity" />
+       
        <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
@@ -55,6 +64,7 @@ https://bitbucket.org/wanglei423/imf-demo-android/raw/69bcafd3ce03351a9adb1382de
 4. add 3rd party dependencies to your app/build.gradle
 
 dependencies {
+
     implementation fileTree(dir: "libs", include: ["*.jar"])
     // IMF dependencies start
     implementation project(path: ':circular_floating_action_menu_library-release')
@@ -103,6 +113,7 @@ dependencies {
     implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.4'
 }
 
+
 5. support realm-android
 
 5.1 in app/build.gradle, add a line:
@@ -114,7 +125,9 @@ dependencies {
 allprojects {
     repositories {
         jcenter()
+        
         maven { url "https://jitpack.io" }
+        
     }
 }
 
@@ -124,11 +137,11 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:4.0.0"
+    
         classpath "io.realm:realm-gradle-plugin:3.4.0"
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
     }
 }
     
+6. See more from imf-demo-android
+
+https://bitbucket.org/wanglei423/imf-demo-android/src/master/
