@@ -51,3 +51,53 @@ https://bitbucket.org/wanglei423/imf-demo-android/raw/69bcafd3ce03351a9adb1382de
 
     Intent in = new Intent(this, org.image.measure.gallery.activities.LFMainActivity.class);
     startActivity(in);
+    
+4. add 3rd party dependencies to your app/build.gradle
+
+    // IMF dependencies start
+    implementation project(path: ':circular_floating_action_menu_library-release')
+    implementation project(path: ':colorpicker-release')
+    implementation project(path: ':opencv401-release')
+    implementation project(path: ':scanlibrary-release')
+    implementation project(path: ':image-measure-app-release')
+    implementation project(path: ':StickyHeaderPagerLibrary-release')
+    implementation project(path: ':photoview-release')
+    
+    //google and support
+    implementation "com.android.support:appcompat-v7:28.0.0"
+    implementation "com.android.support:design:28.0.0"
+    implementation "com.android.support:support-vector-drawable:28.0.0"
+    implementation "com.android.support:palette-v7:28.0.0"
+    implementation "com.android.support:cardview-v7:28.0.0"
+    implementation "com.android.support:customtabs:28.0.0"
+
+    //metadataextractor
+    implementation 'com.drewnoakes:metadata-extractor:2.9.1'
+    //compressor
+    implementation 'id.zelory:compressor:2.1.0'
+
+    implementation 'com.github.bumptech.glide:glide:3.7.0'
+    implementation 'com.yalantis:ucrop:1.5.0'
+    implementation 'de.psdev.licensesdialog:licensesdialog:1.8.0'
+
+    implementation 'com.koushikdutta.ion:ion:2.1.7'
+    implementation 'org.jetbrains:annotations-java5:15.0'
+    implementation 'com.android.support:multidex:1.0.1'
+    implementation 'com.box:box-android-sdk:4.0.8'
+    //leak canary
+    implementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
+    //icons
+    implementation 'com.mikepenz:iconics-core:2.8.4@aar'
+    implementation 'com.mikepenz:google-material-typeface:2.2.0.3.original@aar'
+    implementation 'com.mikepenz:community-material-typeface:1.5.54.2@aar'
+    implementation 'com.mikepenz:fontawesome-typeface:4.6.0.1@aar'
+    implementation 'com.mikepenz:ionicons-typeface:+@aar'
+
+    //ui
+    implementation 'de.hdodenhof:circleimageview:2.0.0'
+    implementation 'com.turingtechnologies.materialscrollbar:lib:10.0.3'
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.7'
+    implementation 'com.github.shchurov:horizontalwheelview:0.9.5'
+    implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.4'
+    
+    
