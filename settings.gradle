@@ -1,5 +1,5 @@
-include ':scanlibrary-release'
 include ':image-measure-app-release'
+include ':scanlibrary-release'
 include ':opencv401-release'
 include ':colorpicker-release'
 include ':circular_floating_action_menu_library-release'

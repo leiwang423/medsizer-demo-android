@@ -36,8 +36,8 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0'
     implementation 'androidx.navigation:navigation-fragment:2.3.0'
     implementation 'androidx.navigation:navigation-ui:2.3.0'
-    implementation project(path: ':image-measure-app-release')
     implementation project(path: ':scanlibrary-release')
+    implementation project(path: ':image-measure-app-release')
 
 
     testImplementation 'junit:junit:4.12'
