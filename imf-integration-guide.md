@@ -60,81 +60,81 @@ https://bitbucket.org/wanglei423/imf-demo-android/raw/69bcafd3ce03351a9adb1382de
     
 ## Step 3 ->  add 3rd party dependencies to your app/build.gradle
 
-dependencies {
+    dependencies {
 
-    implementation fileTree(dir: "libs", include: ["*.jar"])
-    // IMF dependencies start
-    implementation project(path: ':circular_floating_action_menu_library-release')
-    implementation project(path: ':colorpicker-release')
-    implementation project(path: ':opencv401-release')
-    implementation project(path: ':scanlibrary-release')
-    implementation project(path: ':image-measure-app-release')
-    implementation project(path: ':StickyHeaderPagerLibrary-release')
-    implementation project(path: ':photoview-release')
+        implementation fileTree(dir: "libs", include: ["*.jar"])
+        // IMF dependencies start
+        implementation project(path: ':circular_floating_action_menu_library-release')
+        implementation project(path: ':colorpicker-release')
+        implementation project(path: ':opencv401-release')
+        implementation project(path: ':scanlibrary-release')
+        implementation project(path: ':image-measure-app-release')
+        implementation project(path: ':StickyHeaderPagerLibrary-release')
+        implementation project(path: ':photoview-release')
     
-    //google and support
-    implementation "com.android.support:appcompat-v7:28.0.0"
-    implementation "com.android.support:design:28.0.0"
-    implementation "com.android.support:support-vector-drawable:28.0.0"
-    implementation "com.android.support:palette-v7:28.0.0"
-    implementation "com.android.support:cardview-v7:28.0.0"
-    implementation "com.android.support:customtabs:28.0.0"
+        //google and support
+        implementation "com.android.support:appcompat-v7:28.0.0"
+        implementation "com.android.support:design:28.0.0"
+        implementation "com.android.support:support-vector-drawable:28.0.0"
+        implementation "com.android.support:palette-v7:28.0.0"
+        implementation "com.android.support:cardview-v7:28.0.0"
+        implementation "com.android.support:customtabs:28.0.0"
 
-    //metadataextractor
-    implementation 'com.drewnoakes:metadata-extractor:2.9.1'
-    //compressor
-    implementation 'id.zelory:compressor:2.1.0'
+        //metadataextractor
+        implementation 'com.drewnoakes:metadata-extractor:2.9.1'
+        //compressor
+        implementation 'id.zelory:compressor:2.1.0'
 
-    implementation 'com.github.bumptech.glide:glide:3.7.0'
-    implementation 'com.yalantis:ucrop:1.5.0'
-    implementation 'de.psdev.licensesdialog:licensesdialog:1.8.0'
+        implementation 'com.github.bumptech.glide:glide:3.7.0'
+        implementation 'com.yalantis:ucrop:1.5.0'
+        implementation 'de.psdev.licensesdialog:licensesdialog:1.8.0'
 
-    implementation 'com.koushikdutta.ion:ion:2.1.7'
-    implementation 'org.jetbrains:annotations-java5:15.0'
-    implementation 'com.android.support:multidex:1.0.1'
-    implementation 'com.box:box-android-sdk:4.0.8'
-    //leak canary
-    implementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
-    //icons
-    implementation 'com.mikepenz:iconics-core:2.8.4@aar'
-    implementation 'com.mikepenz:google-material-typeface:2.2.0.3.original@aar'
-    implementation 'com.mikepenz:community-material-typeface:1.5.54.2@aar'
-    implementation 'com.mikepenz:fontawesome-typeface:4.6.0.1@aar'
-    implementation 'com.mikepenz:ionicons-typeface:+@aar'
+        implementation 'com.koushikdutta.ion:ion:2.1.7'
+        implementation 'org.jetbrains:annotations-java5:15.0'
+        implementation 'com.android.support:multidex:1.0.1'
+        implementation 'com.box:box-android-sdk:4.0.8'
+        //leak canary
+        implementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
+        //icons
+        implementation 'com.mikepenz:iconics-core:2.8.4@aar'
+        implementation 'com.mikepenz:google-material-typeface:2.2.0.3.original@aar'
+        implementation 'com.mikepenz:community-material-typeface:1.5.54.2@aar'
+        implementation 'com.mikepenz:fontawesome-typeface:4.6.0.1@aar'
+        implementation 'com.mikepenz:ionicons-typeface:+@aar'
 
-    //ui
-    implementation 'de.hdodenhof:circleimageview:2.0.0'
-    implementation 'com.turingtechnologies.materialscrollbar:lib:10.0.3'
-    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.7'
-    implementation 'com.github.shchurov:horizontalwheelview:0.9.5'
-    implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.4'
-}
+        //ui
+        implementation 'de.hdodenhof:circleimageview:2.0.0'
+        implementation 'com.turingtechnologies.materialscrollbar:lib:10.0.3'
+        implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.7'
+        implementation 'com.github.shchurov:horizontalwheelview:0.9.5'
+        implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.4'
+    }
 
 
 ## Step 4 -> support realm-android
 
-### 4.1 in app/build.gradle, add a line:
+in app/build.gradle, add a line:
 
     apply plugin: 'realm-android'
 
-### 4.2 in project build.gradle, add:
+in project build.gradle, add:
 
-allprojects {
-    repositories {
-        jcenter()
-        maven { url "https://jitpack.io" }
+    allprojects {
+        repositories {
+            jcenter()
+            maven { url "https://jitpack.io" }
+        }
     }
-}
 
-buildscript {
-    repositories {
-        google()
-        jcenter()
+    buildscript {
+        repositories {
+            google()
+            jcenter()
+        }
+        dependencies {
+            classpath "io.realm:realm-gradle-plugin:3.4.0"
+        }
     }
-    dependencies {
-        classpath "io.realm:realm-gradle-plugin:3.4.0"
-    }
-}
  
 ## Step 5 -> Start image measure activity from your code
 
@@ -143,4 +143,4 @@ buildscript {
     
 ## Step 6 -> See more reference from imf-demo-android
 
-https://bitbucket.org/wanglei423/imf-demo-android/src/master/
+    https://bitbucket.org/wanglei423/imf-demo-android/src/master/
