@@ -1,4 +1,4 @@
-% Image Measure Framework Integration Guide
+# Image Measure Framework Integration Guide
 
 ## Step 1 -> Download image measure aar files and load to your project, add to dependencies of your app.
 
