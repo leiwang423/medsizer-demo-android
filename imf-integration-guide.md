@@ -4,7 +4,7 @@
 
 [image-measure-app-release]
 
-https://bitbucket.org/wanglei423/imf-demo-android/raw/7270367b430c69dd1f19680137e169b4a6014afc/image-measure-app-release/image-measure-app-release.aar
+https://bitbucket.org/wanglei423/imf-demo-android/raw/5206e877b9a033f968324d4d661cf7ba11da87e9/image-measure-app-release/image-measure-app-release.aar
 
 [circular_floating_action_menu_library-release]
 
