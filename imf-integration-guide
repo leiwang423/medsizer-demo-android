@@ -1,6 +1,6 @@
-# Image Measure Framework Integration Guide
+% Image Measure Framework Integration Guide
 
-##Step 1 -> Download image measure aar files and load to your project, add to dependencies of your app.
+## Step 1 -> Download image measure aar files and load to your project, add to dependencies of your app.
 
 [image-measure-app-release]
 
@@ -31,7 +31,7 @@ https://bitbucket.org/wanglei423/imf-demo-android/raw/69bcafd3ce03351a9adb1382de
 https://bitbucket.org/wanglei423/imf-demo-android/raw/69bcafd3ce03351a9adb1382deefa8baa1202259/StickyHeaderPagerLibrary-release/StickyHeaderPagerLibrary-release.aar
 
 
-##Step 2 -> Add settings to your AndroidManifest.xml
+## Step 2 -> Add settings to your AndroidManifest.xml
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -58,7 +58,7 @@ https://bitbucket.org/wanglei423/imf-demo-android/raw/69bcafd3ce03351a9adb1382de
     </application>
 
     
-##Step 3 ->  add 3rd party dependencies to your app/build.gradle
+## Step 3 ->  add 3rd party dependencies to your app/build.gradle
 
 dependencies {
 
@@ -111,13 +111,13 @@ dependencies {
 }
 
 
-##Step 4 -> support realm-android
+## Step 4 -> support realm-android
 
-###4.1 in app/build.gradle, add a line:
+### 4.1 in app/build.gradle, add a line:
 
     apply plugin: 'realm-android'
 
-###4.2 in project build.gradle, add:
+### 4.2 in project build.gradle, add:
 
 allprojects {
     repositories {
@@ -136,11 +136,11 @@ buildscript {
     }
 }
  
-##Step 5 -> Start image measure activity from your code
+## Step 5 -> Start image measure activity from your code
 
     Intent in = new Intent(this, org.image.measure.gallery.activities.LFMainActivity.class);
     startActivity(in);
     
-##Step 6 -> See more reference from imf-demo-android
+## Step 6 -> See more reference from imf-demo-android
 
 https://bitbucket.org/wanglei423/imf-demo-android/src/master/
