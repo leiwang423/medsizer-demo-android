@@ -85,7 +85,7 @@ https://bitbucket.org/wanglei423/imf-demo-android/raw/16e8c591e1e50064c93d808231
         //compressor
         implementation 'id.zelory:compressor:2.1.0'
 
-        implementation 'com.github.bumptech.glide:glide:3.7.0'
+        implementation 'com.github.bumptech.glide:glide:4.11.0'
         implementation 'com.yalantis:ucrop:1.5.0'
         implementation 'de.psdev.licensesdialog:licensesdialog:1.8.0'
 
