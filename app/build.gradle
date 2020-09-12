@@ -36,8 +36,13 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0'
     implementation 'androidx.navigation:navigation-fragment:2.3.0'
     implementation 'androidx.navigation:navigation-ui:2.3.0'
-    implementation project(path: ':scanlibrary-release')
+    implementation project(path: ':circular_floating_action_menu_library-release')
     implementation project(path: ':image-measure-app-release')
+    implementation project(path: ':scanlibrary-release')
+    implementation project(path: ':StickyHeaderPagerLibrary-release')
+    implementation project(path: ':photoview-release')
+    implementation project(path: ':opencv401-release')
+    implementation project(path: ':colorpicker-release')
 
 
     testImplementation 'junit:junit:4.12'
@@ -47,9 +52,6 @@ dependencies {
 
 
     // IMF dependencies start
-    implementation project(path: ':circular_floating_action_menu_library-release')
-    implementation project(path: ':colorpicker-release')
-    implementation project(path: ':opencv401-release')
 
     //google and support
     implementation "com.android.support:appcompat-v7:28.0.0"
@@ -60,15 +62,13 @@ dependencies {
     implementation "com.android.support:customtabs:28.0.0"
     //implementation 'com.android.support.constraint:constraint-layout:1.0.2'
 
-    implementation project(path: ':StickyHeaderPagerLibrary-release')
-    implementation project(path: ':photoview-release')
 
     //metadataextractor
     implementation 'com.drewnoakes:metadata-extractor:2.9.1'
     //compressor
     implementation 'id.zelory:compressor:2.1.0'
 
-    implementation 'com.github.bumptech.glide:glide:3.7.0'
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
     implementation 'com.yalantis:ucrop:1.5.0'
     implementation 'de.psdev.licensesdialog:licensesdialog:1.8.0'
 
