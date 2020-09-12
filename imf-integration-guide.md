@@ -4,31 +4,31 @@
 
 [image-measure-app-release]
 
-https://bitbucket.org/wanglei423/imf-demo-android/raw/5206e877b9a033f968324d4d661cf7ba11da87e9/image-measure-app-release/image-measure-app-release.aar
+https://bitbucket.org/wanglei423/imf-demo-android/raw/16e8c591e1e50064c93d8082319a5fb4a8bcc9ac/image-measure-app-release/image-measure-app-release.aar
 
 [circular_floating_action_menu_library-release]
 
-https://bitbucket.org/wanglei423/imf-demo-android/raw/69bcafd3ce03351a9adb1382deefa8baa1202259/circular_floating_action_menu_library-release/circular_floating_action_menu_library-release.aar
+https://bitbucket.org/wanglei423/imf-demo-android/raw/16e8c591e1e50064c93d8082319a5fb4a8bcc9ac/circular_floating_action_menu_library-release/circular_floating_action_menu_library-release.aar
 
 [opencv401-release]
 
-https://bitbucket.org/wanglei423/imf-demo-android/raw/69bcafd3ce03351a9adb1382deefa8baa1202259/opencv401-release/opencv401-release.aar
+https://bitbucket.org/wanglei423/imf-demo-android/raw/16e8c591e1e50064c93d8082319a5fb4a8bcc9ac/opencv401-release/opencv401-release.aar
 
 [photoview-release]
 
-https://bitbucket.org/wanglei423/imf-demo-android/raw/69bcafd3ce03351a9adb1382deefa8baa1202259/photoview-release/photoview-release.aar
+https://bitbucket.org/wanglei423/imf-demo-android/raw/16e8c591e1e50064c93d8082319a5fb4a8bcc9ac/photoview-release/photoview-release.aar
 
 [scanlibrary-release]
 
-https://bitbucket.org/wanglei423/imf-demo-android/raw/ee178d9b11b92fc51773f0fa771fd6e2aed6e50e/scanlibrary-release/scanlibrary-release.aar
+https://bitbucket.org/wanglei423/imf-demo-android/raw/16e8c591e1e50064c93d8082319a5fb4a8bcc9ac/scanlibrary-release/scanlibrary-release.aar
 
 [colorpicker-release]
 
-https://bitbucket.org/wanglei423/imf-demo-android/raw/69bcafd3ce03351a9adb1382deefa8baa1202259/colorpicker-release/colorpicker-release.aar
+https://bitbucket.org/wanglei423/imf-demo-android/raw/16e8c591e1e50064c93d8082319a5fb4a8bcc9ac/colorpicker-release/colorpicker-release.aar
 
 [StickyHeaderPagerLibrary-release]
 
-https://bitbucket.org/wanglei423/imf-demo-android/raw/69bcafd3ce03351a9adb1382deefa8baa1202259/StickyHeaderPagerLibrary-release/StickyHeaderPagerLibrary-release.aar
+https://bitbucket.org/wanglei423/imf-demo-android/raw/16e8c591e1e50064c93d8082319a5fb4a8bcc9ac/StickyHeaderPagerLibrary-release/StickyHeaderPagerLibrary-release.aar
 
 
 ## Step 2 -> Add settings to your AndroidManifest.xml
