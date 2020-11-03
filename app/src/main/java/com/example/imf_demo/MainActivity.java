@@ -34,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+                Intent in = new Intent(MainActivity.this, org.image.measure.gallery.activities.LFMainActivity.class);
+                startActivity(in);
             }
         });
 
@@ -56,8 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-        Intent in = new Intent(this, org.image.measure.gallery.activities.LFMainActivity.class);
-        startActivity(in);
+
         /*
         Intent intent = new Intent(android.content.Intent.ACTION_VIEW);
         intent.setComponent(new ComponentName("org.image.measure.gallery.activities",
