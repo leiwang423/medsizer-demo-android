@@ -100,7 +100,8 @@ https://bitbucket.org/wanglei423/imf-demo-android/raw/16e8c591e1e50064c93d808231
         implementation 'com.mikepenz:google-material-typeface:2.2.0.3.original@aar'
         implementation 'com.mikepenz:community-material-typeface:1.5.54.2@aar'
         implementation 'com.mikepenz:fontawesome-typeface:4.6.0.1@aar'
-        implementation 'com.mikepenz:ionicons-typeface:+@aar'
+        implementation 'com.mikepenz:ionicons-typeface:2.0.1.5@aar'
+
 
         //ui
         implementation 'de.hdodenhof:circleimageview:2.0.0'
