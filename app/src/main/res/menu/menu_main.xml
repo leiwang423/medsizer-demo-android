@@ -3,8 +3,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.imf_demo.MainActivity">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_open_local_picture"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:title="打开待测影像文件"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_download_templates"
+        android:orderInCategory="101"
+        android:title="下载模版"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_import_templates"
+        android:orderInCategory="102"
+        android:title="导入已有模版至测量系统"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_measure_existing"
+        android:orderInCategory="103"
+        android:title="测量当前影像文件"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_measure_new"
+        android:orderInCategory="104"
+        android:title="获取新的影像文件并进入测量"
+        app:showAsAction="never" />
+
+
 </menu>

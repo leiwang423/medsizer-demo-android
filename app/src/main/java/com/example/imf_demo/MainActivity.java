@@ -1,9 +1,15 @@
 package com.example.imf_demo;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -11,16 +17,33 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityOptionsCompat;
 
+import android.util.Log;
 import android.view.View;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import org.image.measure.editor.MeasureImageActivity;
+import org.image.measure.editor.db.TemplateDB;
+import org.image.measure.editor.view.DigitalTemplate;
+import org.image.measure.editor.view.Ruler;
+import org.image.measure.editor.view.TemplateDownloadListener;
+import org.image.measure.editor.view.TemplateDownloader;
+import org.image.measure.gallery.activities.SingleMediaActivity;
+
+import java.io.File;
+import java.net.URISyntaxException;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 123;
-
+    private static final String TAG = "MainActivity";
+    ImageView currentImageView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,14 +51,14 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
+
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
-                Intent in = new Intent(MainActivity.this, org.image.measure.gallery.activities.LFMainActivity.class);
-                startActivity(in);
             }
         });
 
@@ -57,14 +80,52 @@ public class MainActivity extends AppCompatActivity {
 
 
         }
+    }
 
+    private void importAvailableTemplates() {
+        TemplateDB.getInstance(this).importTemplates(null);
+    }
 
-        /*
-        Intent intent = new Intent(android.content.Intent.ACTION_VIEW);
-        intent.setComponent(new ComponentName("org.image.measure.gallery.activities",
-                "LFMainActivity"));
-        startActivity(intent);
-        */
+    private void startPickAndMeasure() {
+        Intent in = new Intent(MainActivity.this, org.image.measure.gallery.activities.LFMainActivity.class);
+        startActivity(in);
+    }
+    /*
+    private void enterImageMeasurement() {
+        Intent in = new Intent(MainActivity.this, org.image.measure.editor.MeasureImageActivity.class);
+        startActivity(in);
+    }
+
+     */
+    private static final int REQ_CODE_SCAN_MEASURE = 199;
+    public void startScanAndMeasureOnSingleMedia() {
+        final View view = findViewById(android.R.id.content).getRootView();
+        Intent intent = new Intent(MainActivity.this, org.image.measure.gallery.activities.SingleMediaActivity.class);
+        if (currentFileUri != null) {
+            intent.setData(currentFileUri);
+        }
+        if (currentMeasurementData != null) {
+            intent.putExtra(MeasureImageActivity.KEY_MEASURE_RESULT, currentMeasurementData);
+        }
+        if (currentMatchedTemplates != null) {
+            intent.putExtra(MeasureImageActivity.KEY_TEMPALTE_MATCHING_RESULT, currentMatchedTemplates);
+        }
+        view.setTransitionName("scan a single media");
+        ActivityOptionsCompat options = ActivityOptionsCompat.
+                makeSceneTransitionAnimation(MainActivity.this, view, view.getTransitionName());
+        intent.setAction("android.intent.action.pagerAlbumMedia");
+        startActivityForResult(intent, REQ_CODE_SCAN_MEASURE);
+    }
+
+    private void downloadTemplates() {
+        final View view = findViewById(android.R.id.content).getRootView();
+        new TemplateDownloader(this).start("develop", new TemplateDownloadListener() {
+            @Override
+            public void onTemplateDownloaded(TemplateDB.Template template) {
+                Snackbar.make(view, "Downloaded template: " + template.relativePath(), Snackbar.LENGTH_SHORT)
+                        .setAction("Action", null).show();
+            }
+        });
     }
 
     @Override
@@ -82,10 +143,182 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+
+        if (id == R.id.action_open_local_picture) {
+            this.showFileChooser();
             return true;
         }
-
+        else if (id == R.id.action_download_templates) {
+            downloadTemplates();
+            return true;
+        }
+        else if (id == R.id.action_import_templates) {
+            importAvailableTemplates();
+            return true;
+        }
+        else if (id == R.id.action_measure_new) {
+            startPickAndMeasure();
+            return true;
+        }
+        else if (id == R.id.action_measure_existing) {
+            startScanAndMeasureOnSingleMedia();
+        }
         return super.onOptionsItemSelected(item);
+    }
+
+
+    private static final int FILE_SELECT_CODE = 0;
+
+    public void showFileChooser() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+
+        // Update with mime types
+        intent.setType("*/*");
+
+        // Update with additional mime types here using a String[].
+        //intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes);
+
+        // Only pick openable and local files. Theoretically we could pull files from google drive
+        // or other applications that have networked files, but that's unnecessary for this example.
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
+
+        // REQUEST_CODE = <some-integer>
+        startActivityForResult(intent, FILE_SELECT_CODE);
+    }
+
+    public Uri currentFileUri = null;
+    public String currentMeasurementData;
+    public String currentMatchedTemplates;
+    public String currentMeasuredPictureSavePath;
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case FILE_SELECT_CODE:
+                if (resultCode == RESULT_OK) {
+                    // Get the Uri of the selected file
+                    Uri uri = data.getData();
+                    Log.i(TAG, "File Uri: " + uri.toString());
+                    currentFileUri = uri;
+                    // Get the path
+                    try {
+                        String currentFilePath = getPath(this, uri);
+                        Log.i(TAG, "File Path: " + currentFilePath);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                    if (currentFileUri != null){
+                        displayImageFromUri(currentFileUri);
+                    }
+                    // Get the file instance
+                    // File file = new File(path);
+                    // Initiate the upload
+                }
+                break;
+            case REQ_CODE_SCAN_MEASURE: {
+                if (resultCode == RESULT_OK) {
+                    currentMeasurementData = data.getExtras().getString(MeasureImageActivity.KEY_MEASURE_RESULT);
+                    currentMatchedTemplates = data.getExtras().getString(MeasureImageActivity.KEY_TEMPALTE_MATCHING_RESULT);
+                    currentMeasuredPictureSavePath = data.getExtras().getString(MeasureImageActivity.KEY_MEASURED_PIC_SAVE_PATH);
+                    Log.i(TAG, "onActivityResult, MeasurementData: " + currentMeasurementData + ", Template: " + currentMatchedTemplates);
+                }
+                break;
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    public String getPath(Context context, Uri uri) throws URISyntaxException {
+        if ("content".equalsIgnoreCase(uri.getScheme())) {
+            String[] projection = { "_data" };
+            Cursor cursor = null;
+
+            try {
+                cursor = context.getContentResolver().query(uri, projection, null, null, null);
+                int column_index = cursor.getColumnIndexOrThrow("_data");
+                if (cursor.moveToFirst()) {
+                    return cursor.getString(column_index);
+                }
+            } catch (Exception e) {
+                // Eat it
+            }
+        }
+        else if ("file".equalsIgnoreCase(uri.getScheme())) {
+            return uri.getPath();
+        }
+
+        return null;
+    }
+
+    void displayImageFromUri(Uri uri) {
+        currentImageView = (ImageView) findViewById(R.id.imageView2);
+        if (currentImageView != null) {
+            currentImageView.setImageURI(uri);
+        }
+    }
+    void displayMeasuredImageFile() {
+        File imgFile = new  File(currentMeasuredPictureSavePath);  // e.g. "/sdcard/Images/test_image.jpg"
+
+        if(imgFile.exists()){
+
+            Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+
+            ImageView view = (ImageView) findViewById(R.id.imageView3);
+            if (view != null) {
+                view.setImageBitmap(myBitmap);
+            }
+        }
+    }
+
+    public void displayMeasurementResult() {
+        Ruler.MeasurementDataStruct[] mdss = Ruler.decode(currentMeasurementData);
+
+        int[] textViewIds = {
+                R.id.textViewMeasureData1,
+                R.id.textViewMeasureData2,
+                R.id.textViewMeasureData3,
+                R.id.textViewMeasureData4,
+                R.id.textViewMeasureData5,
+                R.id.textViewMeasureData6
+        };
+        for (int i = 0; i < textViewIds.length; ++i) {
+            TextView view = (TextView) findViewById(textViewIds[i]);
+            if (view == null) {
+                break;
+            }
+            if (mdss == null || i >= mdss.length) {
+                view.setText("");
+                continue;
+            }
+            view.setText(mdss[i].title + ":" + mdss[i].value);
+        }
+    }
+    public void displayTemplateMatchingResult() {
+        DigitalTemplate.TemplateMatchInfo[] tmis = DigitalTemplate.decode(currentMatchedTemplates);
+        int[] textViewIds = {
+                R.id.textViewMatchedTemplate1,
+                R.id.textViewMatchedTemplate2
+        };
+        for (int i = 0; i < textViewIds.length; ++i) {
+            TextView view = (TextView) findViewById(textViewIds[i]);
+            if (view == null) {
+                break;
+            }
+            if (tmis == null || i >= tmis.length) {
+                view.setText("");
+                continue;
+            }
+            view.setText("模版" + (i+1) + "\n" + tmis[i].folder + "\nSize:" + tmis[i].size);
+        }
+    }
+    public void refresh() {
+        if (this.currentFileUri == null) {
+            return;
+        }
+        this.displayImageFromUri(this.currentFileUri);
+        this.displayMeasurementResult();
+        this.displayTemplateMatchingResult();
+        this.displayMeasuredImageFile();
     }
 }

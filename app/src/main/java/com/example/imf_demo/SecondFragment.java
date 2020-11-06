@@ -30,5 +30,12 @@ public class SecondFragment extends Fragment {
                         .navigate(R.id.action_SecondFragment_to_FirstFragment);
             }
         });
+        view.findViewById(R.id.buttonMeasureAgain).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((MainActivity)getActivity()).startScanAndMeasureOnSingleMedia();
+            }
+        });
+        ((MainActivity)getActivity()).refresh();
     }
 }
