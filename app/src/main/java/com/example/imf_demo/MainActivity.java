@@ -220,10 +220,22 @@ public class MainActivity extends AppCompatActivity {
             case REQ_CODE_PICK_SCAN_MEASURE:
             case REQ_CODE_SCAN_MEASURE: {
                 if (resultCode == RESULT_OK) {
+                    currentFileUri = data.getParcelableExtra(MeasureImageActivity.KEY_SCANNED_RAW_URI);
+                    /*
+                    String rawUri = data.getExtras().getString(MeasureImageActivity.KEY_SCANNED_RAW_URI);
+                    if (rawUri != null) {
+                        currentFileUri = Uri.parse(rawUri);
+                    }
+
+                     */
                     currentMeasurementData = data.getExtras().getString(MeasureImageActivity.KEY_MEASURE_RESULT);
                     currentMatchedTemplates = data.getExtras().getString(MeasureImageActivity.KEY_TEMPALTE_MATCHING_RESULT);
                     currentMeasuredPictureSavePath = data.getExtras().getString(MeasureImageActivity.KEY_MEASURED_PIC_SAVE_PATH);
-                    Log.i(TAG, "onActivityResult, MeasurementData: " + currentMeasurementData + ", Template: " + currentMatchedTemplates + ", measuredPicture: " + currentMeasuredPictureSavePath);
+                    Log.i(TAG, "onActivityResult, MeasurementData: " + currentMeasurementData
+                            + ", Template: " + currentMatchedTemplates
+                            + ", measuredPicture: " + currentMeasuredPictureSavePath
+                            + ", raw file uri: " + currentFileUri);
+                    this.refresh();
                 }
                 break;
             }
