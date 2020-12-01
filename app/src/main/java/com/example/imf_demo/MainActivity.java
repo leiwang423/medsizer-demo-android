@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void startPickAndMeasure() {
         Intent in = new Intent(MainActivity.this, org.image.measure.gallery.activities.LFMainActivity.class);
-        startActivity(in);
+        startActivityForResult(in, REQ_CODE_PICK_SCAN_MEASURE);
     }
     /*
     private void enterImageMeasurement() {
@@ -97,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
      */
+    private static final int REQ_CODE_PICK_SCAN_MEASURE = 198;
     private static final int REQ_CODE_SCAN_MEASURE = 199;
     public void startScanAndMeasureOnSingleMedia() {
         final View view = findViewById(android.R.id.content).getRootView();
@@ -188,9 +189,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public Uri currentFileUri = null;
-    public String currentMeasurementData;
-    public String currentMatchedTemplates;
-    public String currentMeasuredPictureSavePath;
+    public String currentMeasurementData = "";
+    public String currentMatchedTemplates = "";
+    public String currentMeasuredPictureSavePath = "";
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
@@ -216,12 +217,13 @@ public class MainActivity extends AppCompatActivity {
                     // Initiate the upload
                 }
                 break;
+            case REQ_CODE_PICK_SCAN_MEASURE:
             case REQ_CODE_SCAN_MEASURE: {
                 if (resultCode == RESULT_OK) {
                     currentMeasurementData = data.getExtras().getString(MeasureImageActivity.KEY_MEASURE_RESULT);
                     currentMatchedTemplates = data.getExtras().getString(MeasureImageActivity.KEY_TEMPALTE_MATCHING_RESULT);
                     currentMeasuredPictureSavePath = data.getExtras().getString(MeasureImageActivity.KEY_MEASURED_PIC_SAVE_PATH);
-                    Log.i(TAG, "onActivityResult, MeasurementData: " + currentMeasurementData + ", Template: " + currentMatchedTemplates);
+                    Log.i(TAG, "onActivityResult, MeasurementData: " + currentMeasurementData + ", Template: " + currentMatchedTemplates + ", measuredPicture: " + currentMeasuredPictureSavePath);
                 }
                 break;
             }
@@ -252,6 +254,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void displayImageFromUri(Uri uri) {
+        if (uri == null) {
+            return;
+        }
         currentImageView = (ImageView) findViewById(R.id.imageView2);
         if (currentImageView != null) {
             currentImageView.setImageURI(uri);
@@ -295,6 +300,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     public void displayTemplateMatchingResult() {
+        if (currentMatchedTemplates == null || currentMatchedTemplates.isEmpty()) {
+            return;
+        }
         DigitalTemplate.TemplateMatchInfo[] tmis = DigitalTemplate.decode(currentMatchedTemplates);
         int[] textViewIds = {
                 R.id.textViewMatchedTemplate1,
@@ -313,9 +321,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     public void refresh() {
-        if (this.currentFileUri == null) {
-            return;
-        }
         this.displayImageFromUri(this.currentFileUri);
         this.displayMeasurementResult();
         this.displayTemplateMatchingResult();
