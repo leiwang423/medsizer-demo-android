@@ -31,7 +31,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="24dp"
+        android:background="#FFFDE7"
         android:text="测量数据1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textview_second" />
@@ -41,7 +42,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="24dp"
+        android:background="#FFFDE7"
         android:text="测量数据2"
         app:layout_constraintStart_toEndOf="@+id/textViewMeasureData1"
         app:layout_constraintTop_toBottomOf="@+id/textview_second" />
@@ -51,7 +53,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="24dp"
+        android:background="#FFFDE7"
         android:text="测量数据3"
         app:layout_constraintStart_toEndOf="@+id/textViewMeasureData2"
         app:layout_constraintTop_toBottomOf="@+id/textview_second" />
@@ -61,17 +64,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="8dp"
+        android:background="#FFFDE7"
         android:text="测量数据4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewMeasureData1" />
+        app:layout_constraintTop_toBottomOf="@id/textViewMeasureData1" />
 
     <TextView
         android:id="@+id/textViewMeasureData5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="8dp"
+        android:background="#FFFDE7"
         android:text="测量数据5"
         app:layout_constraintStart_toEndOf="@+id/textViewMeasureData4"
         app:layout_constraintTop_toBottomOf="@+id/textViewMeasureData2" />
@@ -81,7 +86,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="8dp"
+        android:background="#FFFDE7"
+        android:backgroundTint="#FFFDE7"
         android:text="测量数据6"
         app:layout_constraintStart_toEndOf="@+id/textViewMeasureData5"
         app:layout_constraintTop_toBottomOf="@+id/textViewMeasureData3" />
@@ -100,25 +107,27 @@
 
     <TextView
         android:id="@+id/textViewMatchedTemplate1"
-        android:layout_width="152dp"
-        android:layout_height="91dp"
+        android:layout_width="159dp"
+        android:layout_height="149dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:lines="5"
+        android:layout_marginTop="8dp"
+        android:background="#F1F8E9"
+        android:lines="15"
         android:text="模版1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewMeasureData4" />
 
     <TextView
         android:id="@+id/textViewMatchedTemplate2"
-        android:layout_width="188dp"
-        android:layout_height="90dp"
+        android:layout_width="180dp"
+        android:layout_height="149dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
-        android:lines="5"
+        android:layout_marginTop="8dp"
+        android:background="#F1F8E9"
+        android:lines="15"
         android:text="模版2"
         app:layout_constraintStart_toEndOf="@+id/textViewMatchedTemplate1"
-        app:layout_constraintTop_toBottomOf="@+id/textViewMeasureData5" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewMeasureData4" />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -126,6 +135,7 @@
         android:layout_height="253dp"
         android:layout_marginTop="40dp"
         android:background="@drawable/ic_action_name"
+        android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

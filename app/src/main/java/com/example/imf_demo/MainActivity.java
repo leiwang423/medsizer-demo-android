@@ -275,8 +275,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     void displayMeasuredImageFile() {
-        File imgFile = new  File(currentMeasuredPictureSavePath);  // e.g. "/sdcard/Images/test_image.jpg"
-
+        File imgFile = new File(currentMeasuredPictureSavePath);  // e.g. "/sdcard/Images/test_image.jpg"
+        Log.i("MainActivity", "displayMeasuredImageFile: measuredPicture: " + currentMeasuredPictureSavePath + ", absolutePath: " + imgFile.getAbsolutePath());
         if(imgFile.exists()){
 
             Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
@@ -329,7 +329,8 @@ public class MainActivity extends AppCompatActivity {
                 view.setText("");
                 continue;
             }
-            view.setText("模版" + (i+1) + "\n" + tmis[i].folder + "\nSize:" + tmis[i].size);
+            TemplateDB.Template templateInfo = TemplateDB.getInstance(this).getTemplateById(tmis[i].id);
+            view.setText("模版" + (i+1) + "\n" + templateInfo.toString());
         }
     }
     public void refresh() {
