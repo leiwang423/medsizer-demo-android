@@ -192,6 +192,7 @@ public class MainActivity extends AppCompatActivity {
     public String currentMeasurementData = "";
     public String currentMatchedTemplates = "";
     public String currentMeasuredPictureSavePath = "";
+    public String currentMeasurementComments = "";
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
@@ -231,10 +232,12 @@ public class MainActivity extends AppCompatActivity {
                     currentMeasurementData = data.getExtras().getString(MeasureImageActivity.KEY_MEASURE_RESULT);
                     currentMatchedTemplates = data.getExtras().getString(MeasureImageActivity.KEY_TEMPALTE_MATCHING_RESULT);
                     currentMeasuredPictureSavePath = data.getExtras().getString(MeasureImageActivity.KEY_MEASURED_PIC_SAVE_PATH);
+                    currentMeasurementComments = data.getExtras().getString(MeasureImageActivity.KEY_COMMENTS);
                     Log.i(TAG, "onActivityResult, MeasurementData: " + currentMeasurementData
                             + ", Template: " + currentMatchedTemplates
                             + ", measuredPicture: " + currentMeasuredPictureSavePath
-                            + ", raw file uri: " + currentFileUri);
+                            + ", raw file uri: " + currentFileUri
+                            + ", comments:" + currentMeasurementComments);
                     this.refresh();
                 }
                 break;
