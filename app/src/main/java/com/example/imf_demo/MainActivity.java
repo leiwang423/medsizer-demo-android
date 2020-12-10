@@ -231,7 +231,7 @@ public class MainActivity extends AppCompatActivity {
                      */
                     currentMeasurementData = data.getExtras().getString(MeasureImageActivity.KEY_MEASURE_RESULT);
                     currentMatchedTemplates = data.getExtras().getString(MeasureImageActivity.KEY_TEMPALTE_MATCHING_RESULT);
-                    currentMeasuredPictureSavePath = data.getExtras().getString(MeasureImageActivity.KEY_MEASURED_PIC_SAVE_PATH);
+                    currentMeasuredPictureSavePath = data.getExtras().getString(MeasureImageActivity.KEY_MEASURED_PIC_SAVE_PATH, "");
                     currentMeasurementComments = data.getExtras().getString(MeasureImageActivity.KEY_COMMENTS);
                     Log.i(TAG, "onActivityResult, MeasurementData: " + currentMeasurementData
                             + ", Template: " + currentMatchedTemplates
@@ -278,6 +278,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     void displayMeasuredImageFile() {
+        if (currentMeasuredPictureSavePath.isEmpty()) {
+            return;
+        }
         File imgFile = new File(currentMeasuredPictureSavePath);  // e.g. "/sdcard/Images/test_image.jpg"
         Log.i("MainActivity", "displayMeasuredImageFile: measuredPicture: " + currentMeasuredPictureSavePath + ", absolutePath: " + imgFile.getAbsolutePath());
         if(imgFile.exists()){
