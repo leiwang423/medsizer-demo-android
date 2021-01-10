@@ -30,11 +30,9 @@ import android.widget.Toast;
 
 import org.image.measure.editor.MeasureImageActivity;
 import org.image.measure.editor.db.TemplateDB;
-import org.image.measure.editor.view.DigitalTemplate;
-import org.image.measure.editor.view.Ruler;
+import org.image.measure.editor.view.MeasurementData;
 import org.image.measure.editor.view.TemplateDownloadListener;
 import org.image.measure.editor.view.TemplateDownloader;
-import org.image.measure.gallery.activities.SingleMediaActivity;
 
 import java.io.File;
 import java.net.URISyntaxException;
@@ -105,11 +103,8 @@ public class MainActivity extends AppCompatActivity {
         if (currentFileUri != null) {
             intent.setData(currentFileUri);
         }
-        if (currentMeasurementData != null) {
-            intent.putExtra(MeasureImageActivity.KEY_MEASURE_RESULT, currentMeasurementData);
-        }
-        if (currentMatchedTemplates != null) {
-            intent.putExtra(MeasureImageActivity.KEY_TEMPALTE_MATCHING_RESULT, currentMatchedTemplates);
+        if (currentMeasurementDataJson != null) {
+            intent.putExtra(MeasureImageActivity.KEY_MEASURE_RESULT, currentMeasurementDataJson);
         }
         view.setTransitionName("scan a single media");
         ActivityOptionsCompat options = ActivityOptionsCompat.
@@ -189,8 +184,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public Uri currentFileUri = null;
-    public String currentMeasurementData = "";
-    public String currentMatchedTemplates = "";
+    public String currentMeasurementDataJson = "";
+    public MeasurementData currentMeasurementData = null;
     public String currentMeasuredPictureSavePath = "";
     public String currentMeasurementComments = "";
     @Override
@@ -229,12 +224,17 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                      */
-                    currentMeasurementData = data.getExtras().getString(MeasureImageActivity.KEY_MEASURE_RESULT);
-                    currentMatchedTemplates = data.getExtras().getString(MeasureImageActivity.KEY_TEMPALTE_MATCHING_RESULT);
+                    currentMeasurementDataJson = data.getExtras().getString(MeasureImageActivity.KEY_MEASURE_RESULT);
+                    if (currentMeasurementDataJson != null && !currentMeasurementDataJson.isEmpty()) {
+                        currentMeasurementData = MeasurementData.decode(currentMeasurementDataJson);
+                    }
                     currentMeasuredPictureSavePath = data.getExtras().getString(MeasureImageActivity.KEY_MEASURED_PIC_SAVE_PATH, "");
                     currentMeasurementComments = data.getExtras().getString(MeasureImageActivity.KEY_COMMENTS);
+                    if (currentMeasurementData != null) {
+                        currentRulerInfos = currentMeasurementData.rulerInfos;
+                        currentMatchedTemplates = currentMeasurementData.matchedTemplates;
+                    }
                     Log.i(TAG, "onActivityResult, MeasurementData: " + currentMeasurementData
-                            + ", Template: " + currentMatchedTemplates
                             + ", measuredPicture: " + currentMeasuredPictureSavePath
                             + ", raw file uri: " + currentFileUri
                             + ", comments:" + currentMeasurementComments);
@@ -295,8 +295,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void displayMeasurementResult() {
-        Ruler.MeasurementDataStruct[] mdss = Ruler.decode(currentMeasurementData);
-
+        if (currentRulerInfos == null) {
+            return;
+        }
         int[] textViewIds = {
                 R.id.textViewMeasureData1,
                 R.id.textViewMeasureData2,
@@ -310,18 +311,19 @@ public class MainActivity extends AppCompatActivity {
             if (view == null) {
                 break;
             }
-            if (mdss == null || i >= mdss.length) {
+            if (currentRulerInfos == null || i >= currentRulerInfos.length) {
                 view.setText("");
                 continue;
             }
-            view.setText(mdss[i].title + ":" + mdss[i].value);
+            view.setText(currentRulerInfos[i].title + ":" + currentRulerInfos[i].value);
         }
     }
+    MeasurementData.TemplateMatchInfo[] currentMatchedTemplates = null;
+    MeasurementData.RulerInfo[] currentRulerInfos = null;
     public void displayTemplateMatchingResult() {
-        if (currentMatchedTemplates == null || currentMatchedTemplates.isEmpty()) {
+        if (currentMatchedTemplates == null) {
             return;
         }
-        DigitalTemplate.TemplateMatchInfo[] tmis = DigitalTemplate.decode(currentMatchedTemplates);
         int[] textViewIds = {
                 R.id.textViewMatchedTemplate1,
                 R.id.textViewMatchedTemplate2
@@ -331,11 +333,11 @@ public class MainActivity extends AppCompatActivity {
             if (view == null) {
                 break;
             }
-            if (tmis == null || i >= tmis.length) {
+            if (currentMatchedTemplates == null || i >= currentMatchedTemplates.length) {
                 view.setText("");
                 continue;
             }
-            TemplateDB.Template templateInfo = TemplateDB.getInstance(this).getTemplateById(tmis[i].id);
+            TemplateDB.Template templateInfo = TemplateDB.getInstance(this).getTemplateById(currentMatchedTemplates[i].id);
             view.setText("模版" + (i+1) + "\n" + templateInfo.toString());
         }
     }
