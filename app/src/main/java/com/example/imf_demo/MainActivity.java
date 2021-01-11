@@ -228,12 +228,13 @@ public class MainActivity extends AppCompatActivity {
                     if (currentMeasurementDataJson != null && !currentMeasurementDataJson.isEmpty()) {
                         currentMeasurementData = MeasurementData.decode(currentMeasurementDataJson);
                     }
-                    currentMeasuredPictureSavePath = data.getExtras().getString(MeasureImageActivity.KEY_MEASURED_PIC_SAVE_PATH, "");
-                    currentMeasurementComments = data.getExtras().getString(MeasureImageActivity.KEY_COMMENTS);
                     if (currentMeasurementData != null) {
                         currentRulerInfos = currentMeasurementData.rulerInfos;
                         currentMatchedTemplates = currentMeasurementData.matchedTemplates;
                     }
+                    currentMeasuredPictureSavePath = data.getExtras().getString(MeasureImageActivity.KEY_MEASURED_PIC_SAVE_PATH, "");
+                    currentMeasurementComments = data.getExtras().getString(MeasureImageActivity.KEY_COMMENTS);
+
                     Log.i(TAG, "onActivityResult, MeasurementData: " + currentMeasurementData
                             + ", measuredPicture: " + currentMeasuredPictureSavePath
                             + ", raw file uri: " + currentFileUri
