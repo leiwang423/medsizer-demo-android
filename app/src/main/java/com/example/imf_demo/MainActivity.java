@@ -33,7 +33,7 @@ import org.image.measure.editor.db.TemplateDB;
 import org.image.measure.editor.view.MeasurementData;
 import org.image.measure.editor.view.TemplateDownloadListener;
 import org.image.measure.editor.view.TemplateDownloader;
-
+import org.image.measure.MyApplication;
 import java.io.File;
 import java.net.URISyntaxException;
 
@@ -78,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         }
+        MyApplication.bootstrap(this);
     }
 
     private void importAvailableTemplates() {
@@ -190,6 +191,7 @@ public class MainActivity extends AppCompatActivity {
     public String currentMeasurementComments = "";
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.i(TAG, "onActivityResult, requestCode: " + requestCode + ", resultCode: " + resultCode);
         switch (requestCode) {
             case FILE_SELECT_CODE:
                 if (resultCode == RESULT_OK) {
