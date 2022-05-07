@@ -4,31 +4,31 @@
 
 [image-measure-app-release]
 
-https://bitbucket.org/wanglei423/imf-demo-android/raw/f4d3e279169523755587e1e16d454ce45392f6f8/image-measure-app-release/image-measure-app-release.aar
+./image-measure-app-release/image-measure-app-release.aar
 
 [circular_floating_action_menu_library-release]
 
-https://bitbucket.org/wanglei423/imf-demo-android/raw/16e8c591e1e50064c93d8082319a5fb4a8bcc9ac/circular_floating_action_menu_library-release/circular_floating_action_menu_library-release.aar
+./circular_floating_action_menu_library-release/circular_floating_action_menu_library-release.aar
 
 [opencv401-release]
 
-https://bitbucket.org/wanglei423/imf-demo-android/raw/16e8c591e1e50064c93d8082319a5fb4a8bcc9ac/opencv401-release/opencv401-release.aar
+./opencv401-release/opencv401-release.aar
 
 [photoview-release]
 
-https://bitbucket.org/wanglei423/imf-demo-android/raw/16e8c591e1e50064c93d8082319a5fb4a8bcc9ac/photoview-release/photoview-release.aar
+./photoview-release/photoview-release.aar
 
 [scanlibrary-release]
 
-https://bitbucket.org/wanglei423/imf-demo-android/raw/16e8c591e1e50064c93d8082319a5fb4a8bcc9ac/scanlibrary-release/scanlibrary-release.aar
+./scanlibrary-release/scanlibrary-release.aar
 
 [colorpicker-release]
 
-https://bitbucket.org/wanglei423/imf-demo-android/raw/16e8c591e1e50064c93d8082319a5fb4a8bcc9ac/colorpicker-release/colorpicker-release.aar
+./colorpicker-release/colorpicker-release.aar
 
 [StickyHeaderPagerLibrary-release]
 
-https://bitbucket.org/wanglei423/imf-demo-android/raw/16e8c591e1e50064c93d8082319a5fb4a8bcc9ac/StickyHeaderPagerLibrary-release/StickyHeaderPagerLibrary-release.aar
+./StickyHeaderPagerLibrary-release/StickyHeaderPagerLibrary-release.aar
 
 
 ## Step 2 -> Add settings to your AndroidManifest.xml
@@ -139,8 +139,8 @@ in project build.gradle, add:
  
 ## Step 5 -> Start image measure activity from your code
 
-    Intent in = new Intent(this, org.image.measure.gallery.activities.LFMainActivity.class);
-    startActivity(in);
+    Intent in = new Intent(MainActivity.this, org.image.measure.gallery.activities.LFMainActivity.class);
+    startActivityForResult(in, REQ_CODE_PICK_SCAN_MEASURE);
     
 ## Step 6 -> See more reference from imf-demo-android
 
