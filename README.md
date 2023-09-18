@@ -2,31 +2,31 @@
 
 ## Step 1 -> Download image measure aar files and load to your project, add to dependencies of your app.
 
-[image-measure-app-release]
+###image-measure-app-release
 
 ./image-measure-app-release/image-measure-app-release.aar
 
-[circular_floating_action_menu_library-release]
+###circular_floating_action_menu_library-release
 
 ./circular_floating_action_menu_library-release/circular_floating_action_menu_library-release.aar
 
-[opencv401-release]
+###opencv401-release
 
 ./opencv401-release/opencv401-release.aar
 
-[photoview-release]
+###photoview-release
 
 ./photoview-release/photoview-release.aar
 
-[scanlibrary-release]
+###scanlibrary-release
 
 ./scanlibrary-release/scanlibrary-release.aar
 
-[colorpicker-release]
+###colorpicker-release
 
 ./colorpicker-release/colorpicker-release.aar
 
-[StickyHeaderPagerLibrary-release]
+###StickyHeaderPagerLibrary-release
 
 ./StickyHeaderPagerLibrary-release/StickyHeaderPagerLibrary-release.aar
 
