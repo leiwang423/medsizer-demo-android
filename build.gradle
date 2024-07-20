@@ -1,5 +1,10 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
+    ext.kotlin_version = '1.8.22' // 使用最新的Kotlin版本
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        // 其他依赖...
+    }
     repositories {
         google()
         jcenter()

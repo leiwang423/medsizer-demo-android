@@ -1,13 +1,14 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+
 android {
     compileSdk 34
     namespace 'com.example.imf_demo'
 
     defaultConfig {
-        applicationId "com.example.imf_demo"
-        minSdkVersion 26
-        //noinspection ExpiredTargetSdkVersion,EditedTargetSdkVersion
-        targetSdkVersion 28
+        applicationId "org.image.measure"
+        minSdkVersion 28
+        targetSdkVersion 34
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -30,6 +31,8 @@ allprojects {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    //google and support
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
@@ -62,11 +65,13 @@ dependencies {
     implementation 'de.psdev.licensesdialog:licensesdialog:2.2.0'
 
     //icons
-    implementation 'com.mikepenz:iconics-core:2.8.4@aar'
-    implementation 'com.mikepenz:google-material-typeface:2.2.0.3.original@aar'
-    implementation 'com.mikepenz:community-material-typeface:1.5.54.2@aar'
-    implementation 'com.mikepenz:fontawesome-typeface:4.6.0.1@aar'
-    implementation 'com.mikepenz:ionicons-typeface:2.0.1.5@aar'
+    implementation 'com.mikepenz:iconics-core:4.0.2@aar'
+    implementation 'com.mikepenz:iconics-views:4.0.2@aar'
+
+    implementation 'com.mikepenz:google-material-typeface:3.0.1.4.original-kotlin@aar'
+    implementation 'com.mikepenz:community-material-typeface:3.7.95.3-kotlin@aar'
+    implementation 'com.mikepenz:fontawesome-typeface:5.9.0.0-kotlin@aar'
+    implementation 'com.mikepenz:ionicons-typeface:2.0.1.5-kotlin@aar'
 
     //ui
     implementation 'de.hdodenhof:circleimageview:3.1.0'
