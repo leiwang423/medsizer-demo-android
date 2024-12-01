@@ -23,7 +23,8 @@ android {
 
 allprojects {
     repositories {
-        jcenter()
+        google()
+        mavenCentral()
         maven { url "https://jitpack.io" }
     }
 }
@@ -70,7 +71,6 @@ dependencies {
 
     //ui
     implementation 'de.hdodenhof:circleimageview:3.1.0'
-    implementation 'com.turingtechnologies.materialscrollbar:lib:10.0.3'
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.28'
     implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
 

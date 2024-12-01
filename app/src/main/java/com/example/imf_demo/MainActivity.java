@@ -36,6 +36,8 @@ import org.image.measure.editor.view.TemplateDownloader;
 import org.image.measure.MyApplication;
 import java.io.File;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -107,6 +109,18 @@ public class MainActivity extends AppCompatActivity {
         if (currentMeasurementDataJson != null) {
             intent.putExtra(MeasureImageActivity.KEY_MEASURE_RESULT, currentMeasurementDataJson);
         }
+        intent.putStringArrayListExtra(MeasureImageActivity.KEY_MEASURE_TITLE_DEFS, new ArrayList<>(Arrays.asList(
+                        "颈干角",
+                        "偏心距",
+                        "头高",
+                        "截骨高度",
+                        "髋臼直径",
+                        "下肢等长",
+                        "new item 1",
+                        "new item 2",
+                        "new item 3"
+                ))
+        );
         view.setTransitionName("scan a single media");
         ActivityOptionsCompat options = ActivityOptionsCompat.
                 makeSceneTransitionAnimation(MainActivity.this, view, view.getTransitionName());
